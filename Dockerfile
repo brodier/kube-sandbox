@@ -11,6 +11,6 @@ RUN mvn -f /home/app/pom.xml clean package
 #
 FROM openjdk:11-jre-slim
 COPY --from=build /home/app/target/tools-0.0.1-SNAPSHOT-jar-with-dependencies.jar /usr/local/lib/tools.jar
-COPY --from=build /home/app/src/main/resources/application.conf /usr/local/lib/application.conf
+COPY --from=build /home/app/src/main/resources/application.conf /config/application.conf
 EXPOSE 8080
-ENTRYPOINT ["java", "-Dconfig.file=/usr/local/lib/application.conf", "-jar", "/usr/local/lib/tools.jar"]
+ENTRYPOINT ["java", "-Dconfig.file=/config/application.conf", "-jar", "/usr/local/lib/tools.jar"]

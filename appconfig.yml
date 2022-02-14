@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: dev-tools
+data:
+  # property-like keys; each key maps to a simple value
+  server_port: "8080"
+  config_file: "application.conf"
+
+  # file-like keys
+  application.conf: |
+    http.port=8080
+    main=hash

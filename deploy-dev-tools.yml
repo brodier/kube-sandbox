@@ -18,11 +18,11 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: dev-tools-deployment
+  name: dev-tools
   labels:
     app: dev-tools
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: dev-tools
@@ -30,9 +30,10 @@ spec:
     metadata:
       labels:
         app: dev-tools
+        version: 1.1.0
     spec:
       containers:
       - name: dev-tools
-        image: dev-tools:v1.0.0
+        image: dev-tools:1.1.0
         ports:
         - containerPort: 8080
