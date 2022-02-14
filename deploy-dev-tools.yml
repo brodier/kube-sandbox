@@ -1,0 +1,38 @@
+##################################################################################################
+# Dev Tools service
+##################################################################################################
+apiVersion: v1
+kind: Service
+metadata:
+  name: dev-tools
+  labels:
+    app: dev-tools
+    service: dev-tools
+spec:
+  ports:
+  - port: 8080
+    name: http
+  selector:
+    app: dev-tools
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dev-tools-deployment
+  labels:
+    app: dev-tools
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dev-tools
+  template:
+    metadata:
+      labels:
+        app: dev-tools
+    spec:
+      containers:
+      - name: dev-tools
+        image: dev-tools:v1.0.0
+        ports:
+        - containerPort: 8080
