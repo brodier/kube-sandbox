@@ -137,6 +137,8 @@ public class Application {
 	
 	public static void main(String[] args) throws InterruptedException {
 		logger.info("Application booting");
+		Config c = ConfigFactory.load();
+		logger.info("Starting application with following config : \n" + c.resolve().root().render());
 		new Application(ConfigFactory.load());
 	}
 	
